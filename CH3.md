@@ -91,7 +91,23 @@ public class Employee implements Person, Identified {
 ### 3.3.1 Comparable 인터페이스
 ### 3.3.2 Comparator 인터페이스
 ### 3.3.3 Runnable 인터페이스
-### 3.3.4 사용자 인터페이스 콜백
+<pre>
+<code>
+class HelloTask implements Runnable {
+  public void run() {
+    for (int i = 0; i < 1000; i++) {
+      System.out.println("Hello, World!");
+    }
+  }
+}
+
+Runnable task = new HelloTask();
+Thread thread = new Thread(task);
+thread.start();
+</code>
+</pre>
+### 3.3.4 사용자 인터페이스(GUI) 콜백
+
 ## 3.4 람다 표현식
 ### 3.4.1 람다 표현식 문법
 ### 3.4.2 함수형 인터페이스
