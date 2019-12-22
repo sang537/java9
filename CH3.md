@@ -107,8 +107,26 @@ thread.start();
 </code>
 </pre>
 ### 3.3.4 사용자 인터페이스(GUI) 콜백
+사용자가 버튼을 클릭하거나, 메뉴 옵션을 선택하거나, 슬라이더를 드래그하거나 했을 때 수행할 액션(동작)을 지정해야한다.<br>
+이런 액션을 콜백이라고 한다.
+<pre>
+<code>
+public interface EventHandler<T> {
+  void handle(T event);
+}
 
+class CancelAction implements EventHandler<ActionEvent> {
+  public void handle(ActionEvent event) {
+    System.out.println("Oh noes!");
+  }
+}
+  
+Button cancelButton = new Button("Cancel");
+cancelButton.setOnAction(new CancelAction());
+</code>
+</pre>
 ## 3.4 람다 표현식
+
 ### 3.4.1 람다 표현식 문법
 ### 3.4.2 함수형 인터페이스
 ## 3.5 메서드 참조와 생성자 참조
