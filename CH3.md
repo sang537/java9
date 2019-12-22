@@ -47,12 +47,41 @@ public interface Channel extends Closeable {
 </code>
 </pre>
 ### 3.1.6 여러 인터페이스 구현
+클래스는 인터페이스를 몇 개든 구현할 수 있다.
+public class FileSequence implements IntSequence, Closeable {
+  ...
+}
+이렇게 구현하면 FileSequence 클래스는 IntSequence와 Closeable을 슈퍼타입으로 둔다.
 ### 3.1.7 상수
+인터페이스 안에는 인스턴스 변수를 둘 수 없다.
+인터페이스는 객체의 상태가 아니라 동작을 명시한다.
+따라서 인터페이스에 정의한 변수는 자동으로 public static final이 된다.
 ## 3.2 인터페이스의 정적 메서드, 기본 메서드, 비공개 메서드
+자바 8 이전에는 인터페이스의 모든 메서드가 추상 메서드여야 했다. 메서드의 바디가 없어야만 했다.
+자바 9에서는 실제 구현이 있는 메서드 세 정류 (정적, 기본, 비공개)를 인터페이스에 추가할 수 있다.
 ### 3.2.1 정적 메서드
+팩토리 메서드는 특히 인터페이스에 아주 잘 맞는다.
+예전에는 정적 메서드를 동반 클래스에 두었다. Colletion/Collections같이.
+그런데 이제 이런 분할이 필요 없다.
 ### 3.2.2 기본 메서드
+default 제어자를 붙여야 한다.
+이 인터페이스를 구현하는 클래스는 오버라이드하거나 기본 구현을 상속하는 방법 중 하나를 택.
+기본 메서드의 주요 용도는 인터페이스의 진화
+만약에 기존에 있던 인터페이스에 새로운 기본 메서드를 추가했다고 가정해보자.
+여기에 기본 메서드라는 개념을 적용시키지 않는다면,
+이미 해당하는 인터페이스를 implement하고 있는 클래스들은 다 호환에 문제가 생기게 된다.
 ### 3.2.3 기본 메서드의 충돌 해결
+두 개 이상의 인터페이스를 구현할 때 기본 메서드들의 이름 및 매개변수 타입이 같은 경우
+이 때는 더 정확하게 지정해주면 된다.
+<pre>
+<code>
+public class Employee implements Person, Identified {
+  public int getId() { return Identified.super.getId(); }
+}
+</code>
+</pre>
 ### 3.2.4 비공개 메서드
+비공개
 ## 3.3 인터페이스의 예
 ### 3.3.1 Comparable 인터페이스
 ### 3.3.2 Comparator 인터페이스
