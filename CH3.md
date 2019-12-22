@@ -1,10 +1,51 @@
 # 3 인터페이스와 람다 표현식
 ## 3.1 인터페이스
+리모콘 같은 존재로 이해하면 된다.
+버튼을 만들어두는 것.
+실제 어떻게 동작할지는 후에 어떻게 구현하는지에 달려있다.
 ### 3.1.1 인터페이스 선언
+기본 구현을 해도 되고 안해도 된다.
+기본 구현을 안하고 선언함 한 메서드를 추상(abstract) 메서드라고 한다.
+인터페이스의 모든 메서드는 자동으로 public이 된다.
+따라서 선언 안해줘도 된다.
 ### 3.1.2 인터페이스 구현
-### 3.1.3 인터페이스 타입으로 변환
-### 3.1.4 캐스트와 instanced 연산자
-### 3.1.4 인터페이스 확장
+<pre>
+<code>
+public class ClassName implements InterfaceName {
+  public returntype methodname() {
+    인터페이스 내의 메서드는 public 안해줘도 public 이지만, 구현할 때는 무조건 public 붙여줘야 한다.
+  }
+}
+</code>
+</pre>
+### 3.1.3 인터페이스 타입으로 변환 (서브타입 -> 슈퍼타입)
+<pre>
+<code>
+인터페이스가 클래스의 슈퍼타입
+InterfaceName variable = new Class which implements the interface();
+</code>
+</pre>
+### 3.1.4 캐스트와 instanced 연산자 (슈퍼타입 -> 서브타입)
+<pre>
+<code>
+Interface if = new Class();
+if(if instanceof Class) {
+  Class class = (Class) if;
+}
+</code>
+</pre>
+### 3.1.4 인터페이스 확장 (extends)
+Channel 인터페이스를 구현하는 클래스는 두 메서드를 모두 구현해야 하며, 두 인터페이스 타입 중 어느 것으로도 객체를 변환할 수 있다.
+<pre>
+<code>
+public interface Closeable {
+  void close();
+}
+public interface Channel extends Closeable { 
+  boolean isOpen();
+}
+</code>
+</pre>
 ### 3.1.6 여러 인터페이스 구현
 ### 3.1.7 상수
 ## 3.2 인터페이스의 정적 메서드, 기본 메서드, 비공개 메서드
